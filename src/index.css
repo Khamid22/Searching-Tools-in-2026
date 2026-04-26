@@ -17,7 +17,7 @@
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
-  color-scheme: light;
+  color-scheme: light dark;
   color: var(--text);
   background: var(--bg);
   font-synthesis: none;
@@ -27,6 +27,26 @@
 
   @media (max-width: 1024px) {
     font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #b8afd4;
+    --text-h: #ede9ff;
+    --bg: #1a1728;
+    --border: #302a4a;
+    --code-bg: #231e38;
+    --accent: #a78bfa;
+    --accent-bg: rgba(167, 139, 250, 0.15);
+    --accent-border: rgba(167, 139, 250, 0.5);
+    --social-bg: rgba(48, 42, 74, 0.6);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+
+  #social .button-icon {
+    filter: invert(1) brightness(2);
   }
 }
 

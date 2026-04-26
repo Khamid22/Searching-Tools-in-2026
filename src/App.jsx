@@ -245,7 +245,7 @@ const tools = {
     {
       name: "OSINT Frameworks",
       tagline: "Maltego, Recon-ng, SpiderFoot",
-      color: "#3B82F6",
+      color: "#4338CA",
       tier: "A-Tier",
       pricing: "Free / Enterprise",
       free: "Community editions",
@@ -469,128 +469,71 @@ const decisionMatrix = [
   { use: "Self-hosted LLM-native crawler", tool: "Crawl4AI", why: "Full code control, async Python, markdown output, free" },
 ];
 
-const crmPlatforms = {
-  intro: {
-    summary: "Three platforms represent the competitive landscape for AI recruiting and talent intelligence. Understanding where each falls short is the map to where your AI HR agent wins.",
-    positioning: "You are building what sits between all three: ATS infrastructure (Workable) + sourcing automation (Monaco) + intelligence layer (Lightfield) — but with a narrow ICP focus and deep semantic reasoning.",
-  },
-  products: [
-    {
-      name: "Workable",
-      type: "ATS (Applicant Tracking System)",
-      color: "#3B82F6",
-      tagline: "Full-stack recruiting infrastructure",
-      strengths: ["Mature, reliable hiring pipeline management", "Resume parsing & interview scheduling", "API integrations with other tools", "Clean structured candidate data", "AI-generated job descriptions & candidate recommendations"],
-      limitations: ["Primarily inbound recruiting — waits for applications", "No outbound sourcing intelligence", "No deep semantic understanding of candidate context", "Weak enrichment layer"],
-      takeaway: "Infrastructure, not intelligence. Build your agent on top of it, not against it.",
-      takeawayColor: "#3B82F6",
-    },
-    {
-      name: "Monaco",
-      type: "AI Sourcing Tool",
-      color: "#F59E0B",
-      tagline: "Candidate search, ranking & outreach automation",
-      strengths: ["Faster sourcing than traditional ATS", "Automates repetitive recruiter tasks", "AI-based candidate ranking", "Outreach automation (email/LinkedIn)"],
-      limitations: ["Shallow keyword-based scoring — no real reasoning", "Cannot distinguish 'real active angel' from 'listed investor'", "Generic across roles — not specialized for high-value operators", "No explainability on why a candidate was recommended"],
-      takeaway: "Your closest competitive category. Win with deeper reasoning, better ICP targeting, and agent-style workflows.",
-      takeawayColor: "#F59E0B",
-    },
-    {
-      name: "Lightfield",
-      type: "AI Data Platform",
-      color: "#10B981",
-      tagline: "Unstructured data → structured intelligence",
-      strengths: ["Deep data modeling & entity resolution", "Connects signals across sources", "Knowledge graph construction", "Semantic search over unstructured data"],
-      limitations: ["Not HR-specific — requires custom workflow build", "Not optimized for recruiting pipelines or outreach", "No out-of-the-box candidate engagement layer"],
-      takeaway: "Conceptually closest to what you're building. The intelligence layer — but missing recruiting context and ICP focus.",
-      takeawayColor: "#10B981",
-    },
-  ],
-  comparison: [
-    { dimension: "Type", workable: "ATS", monaco: "AI Sourcing", lightfield: "AI Data Platform" },
-    { dimension: "Core strength", workable: "Hiring infrastructure", monaco: "Sourcing automation", lightfield: "Deep data understanding" },
-    { dimension: "Core weakness", workable: "Weak sourcing", monaco: "Shallow intelligence", lightfield: "Not HR-focused" },
-    { dimension: "ICP targeting", workable: "None", monaco: "Generic", lightfield: "Custom-build required" },
-    { dimension: "Semantic reasoning", workable: "No", monaco: "Keyword-level only", lightfield: "Yes (not HR-tuned)" },
-    { dimension: "Outreach automation", workable: "Basic", monaco: "Yes", lightfield: "No" },
-  ],
-  edge: [
-    { point: "Narrow ICP focus", detail: "Active angels · B2C product leaders · Exit/unicorn experience. Most tools are too generic to target this cohort effectively." },
-    { point: "Deep semantic understanding", detail: "Not 'contains keyword: investor' — but 'operator turned active angel with real investment behavior'. This requires LLM reasoning, not keyword matching." },
-    { point: "Agent behavior", detail: "Instead of dumping 500 candidates, you deliver: ranked list + reasoning per candidate + outreach angle + optional auto-contact." },
-    { point: "Explainability", detail: "Every candidate includes why they match and what signals were detected — something no current tool does well." },
-    { point: "Feedback loop", detail: "User marks good/bad → model adapts. Competitors have static scoring; you have a learning system." },
-  ],
-};
-
 export default function App() {
   const [activeCategory, setActiveCategory] = useState(null);
   const [expandedTool, setExpandedTool] = useState(null);
-  const [view, setView] = useState("tools"); // 'tools' | 'matrix' | 'hr' | 'crm'
+  const [view, setView] = useState("tools"); // 'tools' | 'matrix' | 'hr'
   const [expandedRisk, setExpandedRisk] = useState(null);
   const [expandedCase, setExpandedCase] = useState(null);
-  const [expandedCrm, setExpandedCrm] = useState(null);
 
   const categories = Object.keys(tools);
   const filtered = activeCategory ? { [activeCategory]: tools[activeCategory] } : tools;
 
   return (
     <div style={{
-      fontFamily: "'Space Grotesk', 'Avenir Next', 'Segoe UI', sans-serif",
-      background: "#0B1020",
+      fontFamily: "'DM Mono', 'Courier New', monospace",
+      background: "#0A0A0F",
       minHeight: "100vh",
-      color: "#F8FAFC",
+      color: "#E2E8F0",
       padding: "0",
-      textAlign: "left",
     }}>
       {/* Header */}
       <div style={{
-        background: "linear-gradient(180deg, #0F172A 0%, #1E1B4B 100%)",
-        borderBottom: "1px solid #334155",
+        background: "linear-gradient(135deg, #0A0A0F 0%, #1a0533 50%, #0A0A0F 100%)",
+        borderBottom: "1px solid #2D1B69",
         padding: "32px 24px 24px",
         position: "sticky",
         top: 0,
         zIndex: 100,
         backdropFilter: "blur(10px)",
-        boxShadow: "none",
       }}>
-        <div style={{ maxWidth: 980, margin: "0 auto" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 6 }}>
-            <span style={{ fontSize: 11, color: "#F8FAFC", letterSpacing: 2, textTransform: "uppercase", fontWeight: 700 }}>@ py_ds research</span>
+            <span style={{ fontSize: 11, color: "#7C3AED", letterSpacing: 3, textTransform: "uppercase" }}>@ py_ds research</span>
           </div>
           <h1 style={{ 
             fontSize: "clamp(22px, 5vw, 36px)", 
-            fontWeight: 800, 
+            fontWeight: 700, 
             margin: "0 0 4px",
-            color: "#F8FAFC",
-            letterSpacing: "-0.02em",
+            fontFamily: "'DM Mono', monospace",
+            background: "linear-gradient(90deg, #A78BFA, #60A5FA, #34D399)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
           }}>
             Internet Search & Scraping Stack
           </h1>
-          <p style={{ margin: 0, color: "#CBD5E1", fontSize: 13, fontWeight: 500 }}>
+          <p style={{ margin: 0, color: "#64748B", fontSize: 13 }}>
             Deep-dive reference · {Object.values(tools).flat().length} tools · Updated April 2026
           </p>
         </div>
       </div>
 
-      <div style={{ maxWidth: 980, margin: "0 auto", padding: "28px 16px 36px" }}>
+      <div style={{ maxWidth: 900, margin: "0 auto", padding: "24px 16px" }}>
         {/* View Toggle */}
         <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
-          {[["tools","⚙ Tool Cards"], ["matrix","🗺 Decision Matrix"], ["hr","🤖 AI HR Agents"], ["crm","🏢 CRM Platforms"]].map(([v, label]) => (
+          {[["tools","⚙ Tool Cards"], ["matrix","🗺 Decision Matrix"], ["hr","🤖 AI HR Agents"]].map(([v, label]) => (
             <button key={v} onClick={() => setView(v)} style={{
-              padding: "8px 18px",
-              borderRadius: 999,
+              padding: "7px 18px",
+              borderRadius: 4,
               border: "1px solid",
-              borderColor: view === v ? "#7C3AED" : "#334155",
-              background: view === v ? "#7C3AED" : "#1F2937",
-              color: "#F8FAFC",
+              borderColor: view === v ? "#7C3AED" : "#2D2D4E",
+              background: view === v ? "#7C3AED22" : "transparent",
+              color: view === v ? "#A78BFA" : "#64748B",
               cursor: "pointer",
               fontSize: 12,
-              letterSpacing: 0.6,
+              letterSpacing: 1,
               textTransform: "uppercase",
               fontFamily: "inherit",
-              fontWeight: 700,
-              boxShadow: "none",
             }}>
               {label}
             </button>
@@ -598,21 +541,21 @@ export default function App() {
         </div>
 
         {view === "hr" ? (
-          <div style={{ color: "#F8FAFC" }}>
+          <div>
             {/* Intro */}
-            <div style={{ border: "1px solid #334155", borderRadius: 12, padding: "20px", marginBottom: 20, background: "#111827", boxShadow: "none" }}>
-              <div style={{ fontSize: 10, color: "#F8FAFC", letterSpacing: 2, textTransform: "uppercase", marginBottom: 10, fontWeight: 700 }}>What is an AI HR Agent?</div>
-              <p style={{ fontSize: 13, color: "#E2E8F0", lineHeight: 1.8, margin: "0 0 16px" }}>{hrAgents.intro.summary}</p>
+            <div style={{ border: "1px solid #2D1B69", borderRadius: 8, padding: "20px", marginBottom: 20, background: "#0F0B1F" }}>
+              <div style={{ fontSize: 10, color: "#7C3AED", letterSpacing: 3, textTransform: "uppercase", marginBottom: 10 }}>What is an AI HR Agent?</div>
+              <p style={{ fontSize: 13, color: "#94A3B8", lineHeight: 1.8, margin: "0 0 16px" }}>{hrAgents.intro.summary}</p>
               <div style={{ 
-                background: "#1F2937", border: "1px solid #334155", borderRadius: 6, 
-                padding: "10px 14px", fontSize: 12, color: "#F8FAFC", marginBottom: 12,
+                background: "#1E1040", border: "1px solid #3730A3", borderRadius: 6, 
+                padding: "10px 14px", fontSize: 12, color: "#A5B4FC", marginBottom: 12,
                 fontStyle: "italic"
               }}>
                 📌 Feasibility check: {hrAgents.intro.feasibility}
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 10 }}>
                 {[hrAgents.intro.stat1, hrAgents.intro.stat2, hrAgents.intro.stat3].map((s, i) => (
-                  <div key={i} style={{ background: "#1F2937", border: "1px solid #334155", borderRadius: 10, padding: "10px 12px", fontSize: 11, color: "#F8FAFC" }}>
+                  <div key={i} style={{ background: "#0A0A0F", border: "1px solid #1E1E3A", borderRadius: 6, padding: "10px 12px", fontSize: 11, color: "#60A5FA" }}>
                     📊 {s}
                   </div>
                 ))}
@@ -621,16 +564,16 @@ export default function App() {
 
             {/* How it works */}
             <div style={{ marginBottom: 20 }}>
-              <h3 style={{ fontSize: 11, letterSpacing: 2, color: "#F8FAFC", textTransform: "uppercase", margin: "0 0 12px", paddingBottom: 8, borderBottom: "1px solid #334155" }}>
+              <h3 style={{ fontSize: 11, letterSpacing: 2, color: "#475569", textTransform: "uppercase", margin: "0 0 12px", paddingBottom: 8, borderBottom: "1px solid #1E1E3A" }}>
                 ⚙ How It Actually Works — Step by Step
               </h3>
               {hrAgents.howItWorks.map((s, i) => (
                 <div key={i} style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: 14, marginBottom: 10, alignItems: "start" }}>
-                  <div style={{ width: 28, height: 28, borderRadius: "50%", background: "#7C3AED", border: "1px solid #7C3AED", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#FFFFFF", flexShrink: 0, fontWeight: 700 }}>{i + 1}</div>
-                  <div style={{ border: "1px solid #334155", borderRadius: 10, padding: "10px 14px", background: "#111827" }}>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: "#F8FAFC", marginBottom: 4 }}>{s.step}</div>
-                    <div style={{ fontSize: 11, color: "#E2E8F0", marginBottom: 4, fontStyle: "italic" }}>Example: {s.example}</div>
-                    <div style={{ fontSize: 11, color: "#CBD5E1" }}>↳ {s.what}</div>
+                  <div style={{ width: 28, height: 28, borderRadius: "50%", background: "#1E1040", border: "1px solid #3730A3", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#A5B4FC", flexShrink: 0, fontWeight: 700 }}>{i + 1}</div>
+                  <div style={{ border: "1px solid #1E1E3A", borderRadius: 6, padding: "10px 14px", background: "#0F0F1A" }}>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: "#E2E8F0", marginBottom: 4 }}>{s.step}</div>
+                    <div style={{ fontSize: 11, color: "#60A5FA", marginBottom: 4, fontStyle: "italic" }}>Example: {s.example}</div>
+                    <div style={{ fontSize: 11, color: "#475569" }}>↳ {s.what}</div>
                   </div>
                 </div>
               ))}
@@ -638,26 +581,26 @@ export default function App() {
 
             {/* Use Cases */}
             <div style={{ marginBottom: 20 }}>
-              <h3 style={{ fontSize: 11, letterSpacing: 2, color: "#F8FAFC", textTransform: "uppercase", margin: "0 0 12px", paddingBottom: 8, borderBottom: "1px solid #334155" }}>
+              <h3 style={{ fontSize: 11, letterSpacing: 2, color: "#475569", textTransform: "uppercase", margin: "0 0 12px", paddingBottom: 8, borderBottom: "1px solid #1E1E3A" }}>
                 🎯 Real Use Cases — What's Live vs. What's Emerging
               </h3>
               {hrAgents.useCases.map((uc, i) => {
                 const isOpen = expandedCase === i;
                 return (
-                  <div key={i} onClick={() => setExpandedCase(isOpen ? null : i)} style={{ border: "1px solid", borderColor: isOpen ? uc.color : "#334155", borderRadius: 12, marginBottom: 8, cursor: "pointer", overflow: "hidden", background: "#111827", boxShadow: "none" }}>
+                  <div key={i} onClick={() => setExpandedCase(isOpen ? null : i)} style={{ border: "1px solid", borderColor: isOpen ? uc.color + "55" : "#2D2D4E", borderRadius: 6, marginBottom: 8, cursor: "pointer", overflow: "hidden", background: isOpen ? uc.color + "08" : "#0F0F1A" }}>
                     <div style={{ padding: "12px 16px", display: "flex", alignItems: "center", gap: 10, justifyContent: "space-between" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                        <span style={{ fontSize: 13, fontWeight: 700, color: "#F8FAFC" }}>{uc.area}</span>
-                        <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 3, background: uc.color, color: "#FFFFFF", border: `1px solid ${uc.color}` }}>{uc.feasibility}</span>
+                        <span style={{ fontSize: 13, fontWeight: 700, color: "#F1F5F9" }}>{uc.area}</span>
+                        <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 3, background: uc.color + "22", color: uc.color, border: `1px solid ${uc.color}44` }}>{uc.feasibility}</span>
                       </div>
-                      <span style={{ color: "#CBD5E1", fontSize: 12, flexShrink: 0 }}>{isOpen ? "▲" : "▼"}</span>
+                      <span style={{ color: "#334155", fontSize: 12, flexShrink: 0 }}>{isOpen ? "▲" : "▼"}</span>
                     </div>
                     {isOpen && (
-                      <div style={{ padding: "0 16px 14px", borderTop: "1px solid #334155" }}>
-                        <div style={{ fontSize: 11, color: "#CBD5E1", marginBottom: 8, paddingTop: 10 }}>Tools: {uc.tools.join(" · ")}</div>
-                        <div style={{ fontSize: 12, color: "#E2E8F0", marginBottom: 8, lineHeight: 1.7 }}>🏢 Real example: {uc.example}</div>
-                        <div style={{ fontSize: 11, color: "#F8FAFC", marginBottom: 10, fontWeight: 600 }}>📈 Impact: {uc.impact}</div>
-                        <a href={uc.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 10, color: "#FFFFFF", textDecoration: "none", border: "1px solid #7C3AED", borderRadius: 999, padding: "4px 10px", fontWeight: 700, background: "#7C3AED" }}>→ Source</a>
+                      <div style={{ padding: "0 16px 14px", borderTop: "1px solid #1E1E3A" }}>
+                        <div style={{ fontSize: 11, color: "#475569", marginBottom: 8, paddingTop: 10 }}>Tools: {uc.tools.join(" · ")}</div>
+                        <div style={{ fontSize: 12, color: "#94A3B8", marginBottom: 8, lineHeight: 1.7 }}>🏢 Real example: {uc.example}</div>
+                        <div style={{ fontSize: 11, color: "#34D399", marginBottom: 10 }}>📈 Impact: {uc.impact}</div>
+                        <a href={uc.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 10, color: "#7C3AED", textDecoration: "none", border: "1px solid #2D1B69", borderRadius: 3, padding: "3px 8px" }}>→ Source</a>
                       </div>
                     )}
                   </div>
@@ -667,22 +610,22 @@ export default function App() {
 
             {/* Risks */}
             <div style={{ marginBottom: 20 }}>
-              <h3 style={{ fontSize: 11, letterSpacing: 2, color: "#F8FAFC", textTransform: "uppercase", margin: "0 0 12px", paddingBottom: 8, borderBottom: "1px solid #334155" }}>
+              <h3 style={{ fontSize: 11, letterSpacing: 2, color: "#475569", textTransform: "uppercase", margin: "0 0 12px", paddingBottom: 8, borderBottom: "1px solid #1E1E3A" }}>
                 ⚠ Real Risks You Must Know Before Deploying
               </h3>
               {hrAgents.risks.map((r, i) => {
                 const isOpen = expandedRisk === i;
                 return (
-                  <div key={i} onClick={() => setExpandedRisk(isOpen ? null : i)} style={{ border: "1px solid", borderColor: isOpen ? "#EF4444" : "#334155", borderRadius: 12, marginBottom: 8, cursor: "pointer", background: "#111827", overflow: "hidden", boxShadow: "none" }}>
+                  <div key={i} onClick={() => setExpandedRisk(isOpen ? null : i)} style={{ border: "1px solid", borderColor: isOpen ? "#EF444455" : "#2D2D4E", borderRadius: 6, marginBottom: 8, cursor: "pointer", background: isOpen ? "#1A0808" : "#0F0F1A", overflow: "hidden" }}>
                     <div style={{ padding: "11px 16px", display: "flex", alignItems: "center", gap: 10, justifyContent: "space-between" }}>
-                      <span style={{ fontSize: 13 }}>{r.icon} <span style={{ fontWeight: 700, color: "#F8FAFC" }}>{r.risk}</span></span>
-                      <span style={{ color: "#CBD5E1", fontSize: 12 }}>{isOpen ? "▲" : "▼"}</span>
+                      <span style={{ fontSize: 13 }}>{r.icon} <span style={{ fontWeight: 700, color: "#FCA5A5" }}>{r.risk}</span></span>
+                      <span style={{ color: "#334155", fontSize: 12 }}>{isOpen ? "▲" : "▼"}</span>
                     </div>
                     {isOpen && (
-                      <div style={{ padding: "0 16px 14px", borderTop: "1px solid #334155" }}>
-                        <div style={{ fontSize: 12, color: "#E2E8F0", marginBottom: 8, lineHeight: 1.7, paddingTop: 10 }}>{r.detail}</div>
-                        <div style={{ fontSize: 11, color: "#F8FAFC", marginBottom: 10, fontWeight: 600 }}>✓ Fix: {r.fix}</div>
-                        <a href={r.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 10, color: "#FFFFFF", textDecoration: "none", border: "1px solid #EF4444", borderRadius: 999, padding: "4px 10px", fontWeight: 700, background: "#EF4444" }}>→ Source</a>
+                      <div style={{ padding: "0 16px 14px", borderTop: "1px solid #2D1B1B" }}>
+                        <div style={{ fontSize: 12, color: "#94A3B8", marginBottom: 8, lineHeight: 1.7, paddingTop: 10 }}>{r.detail}</div>
+                        <div style={{ fontSize: 11, color: "#34D399", marginBottom: 10 }}>✓ Fix: {r.fix}</div>
+                        <a href={r.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 10, color: "#7C3AED", textDecoration: "none", border: "1px solid #2D1B69", borderRadius: 3, padding: "3px 8px" }}>→ Source</a>
                       </div>
                     )}
                   </div>
@@ -692,160 +635,54 @@ export default function App() {
 
             {/* Build Stack */}
             <div style={{ marginBottom: 20 }}>
-              <h3 style={{ fontSize: 11, letterSpacing: 2, color: "#F8FAFC", textTransform: "uppercase", margin: "0 0 12px", paddingBottom: 8, borderBottom: "1px solid #334155" }}>
+              <h3 style={{ fontSize: 11, letterSpacing: 2, color: "#475569", textTransform: "uppercase", margin: "0 0 12px", paddingBottom: 8, borderBottom: "1px solid #1E1E3A" }}>
                 🏗 How to Build Your AI HR Agent Stack
               </h3>
               {hrAgents.buildStack.map((layer, i) => (
                 <div key={i} style={{ display: "grid", gridTemplateColumns: "160px 1fr", gap: 12, marginBottom: 8, alignItems: "start" }}>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "#F8FAFC", background: "#1F2937", border: "1px solid #334155", borderRadius: 4, padding: "6px 10px", textAlign: "center" }}>{layer.layer}</div>
-                  <div style={{ fontSize: 11, color: "#E2E8F0", background: "#111827", border: "1px solid #334155", borderRadius: 4, padding: "6px 10px", lineHeight: 1.6 }}>
-                    {layer.tools} <a href={layer.link} target="_blank" rel="noopener noreferrer" style={{ color: "#93C5FD", marginLeft: 6, fontSize: 10 }}>↗</a>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#A78BFA", background: "#2D1B6922", border: "1px solid #2D1B6955", borderRadius: 4, padding: "6px 10px", textAlign: "center" }}>{layer.layer}</div>
+                  <div style={{ fontSize: 11, color: "#94A3B8", background: "#0F0F1A", border: "1px solid #1E1E3A", borderRadius: 4, padding: "6px 10px", lineHeight: 1.6 }}>
+                    {layer.tools} <a href={layer.link} target="_blank" rel="noopener noreferrer" style={{ color: "#4B5563", marginLeft: 6, fontSize: 10 }}>↗</a>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div style={{ padding: "14px 16px", border: "1px solid #34D399", borderRadius: 12, background: "#065F46", fontSize: 11, color: "#F0FDF4", lineHeight: 1.8, boxShadow: "none" }}>
-              <span style={{ color: "#FFFFFF", fontWeight: 800 }}>// KEY TAKEAWAY</span><br />
-              <span style={{ color: "#ECFDF5" }}>
+            <div style={{ padding: "14px 16px", border: "1px solid #1E4036", borderRadius: 6, background: "#0B1F18", fontSize: 11, color: "#4ADE80", lineHeight: 1.8 }}>
+              <span style={{ color: "#34D399", fontWeight: 700 }}>// KEY TAKEAWAY</span><br />
+              <span style={{ color: "#86EFAC" }}>
                 AI HR Agents are not a replacement for HR teams — they are a force multiplier. The companies winning today are the ones who automated the repetitive 80% (scheduling, Q&amp;A, onboarding logistics) so their HR humans can focus on the 20% that actually requires judgment: difficult conversations, culture building, organizational design, and genuine employee connection. Start small, prove ROI, expand carefully.
               </span>
             </div>
           </div>
-        ) : view === "crm" ? (
-          <div style={{ color: "#F8FAFC" }}>
-            {/* Intro */}
-            <div style={{ border: "1px solid #334155", borderRadius: 12, padding: "20px", marginBottom: 20, background: "#111827", boxShadow: "none" }}>
-              <div style={{ fontSize: 10, color: "#F8FAFC", letterSpacing: 2, textTransform: "uppercase", marginBottom: 10, fontWeight: 700 }}>Competitive Landscape</div>
-              <p style={{ fontSize: 13, color: "#E2E8F0", lineHeight: 1.8, margin: "0 0 12px" }}>{crmPlatforms.intro.summary}</p>
-              <div style={{ background: "#1F2937", border: "1px solid #334155", borderRadius: 6, padding: "10px 14px", fontSize: 12, color: "#F8FAFC", fontStyle: "italic" }}>
-                📌 {crmPlatforms.intro.positioning}
-              </div>
-            </div>
-
-            {/* Platform cards */}
-            <div style={{ marginBottom: 20 }}>
-              <h3 style={{ fontSize: 11, letterSpacing: 2, color: "#F8FAFC", textTransform: "uppercase", margin: "0 0 12px", paddingBottom: 8, borderBottom: "1px solid #334155" }}>
-                🏢 The Three Platforms
-              </h3>
-              {crmPlatforms.products.map((p, i) => {
-                const isOpen = expandedCrm === i;
-                return (
-                  <div key={i} onClick={() => setExpandedCrm(isOpen ? null : i)} style={{ border: "1px solid", borderColor: isOpen ? p.color : "#334155", borderRadius: 12, marginBottom: 8, cursor: "pointer", overflow: "hidden", background: "#111827", boxShadow: "none" }}>
-                    <div style={{ padding: "12px 16px", display: "flex", alignItems: "center", gap: 10, justifyContent: "space-between" }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-                        <span style={{ width: 8, height: 8, borderRadius: "50%", background: p.color, display: "inline-block", flexShrink: 0 }} />
-                        <span style={{ fontSize: 14, fontWeight: 700, color: "#F8FAFC" }}>{p.name}</span>
-                        <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 3, background: p.color, color: "#FFFFFF", border: `1px solid ${p.color}` }}>{p.type}</span>
-                        <span style={{ fontSize: 11, color: "#CBD5E1" }}>{p.tagline}</span>
-                      </div>
-                      <span style={{ color: "#CBD5E1", fontSize: 12, flexShrink: 0 }}>{isOpen ? "▲" : "▼"}</span>
-                    </div>
-                    {isOpen && (
-                      <div style={{ padding: "0 16px 14px", borderTop: "1px solid #334155" }}>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, paddingTop: 12, marginBottom: 12 }}>
-                          <div>
-                            <div style={{ fontSize: 10, color: "#F8FAFC", letterSpacing: 2, textTransform: "uppercase", marginBottom: 6, fontWeight: 700 }}>✓ Strengths</div>
-                            {p.strengths.map((s, j) => (
-                              <div key={j} style={{ fontSize: 12, color: "#E2E8F0", padding: "3px 0 3px 12px", borderLeft: `2px solid ${p.color}`, marginBottom: 3 }}>{s}</div>
-                            ))}
-                          </div>
-                          <div>
-                            <div style={{ fontSize: 10, color: "#F8FAFC", letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>✗ Limitations</div>
-                            {p.limitations.map((l, j) => (
-                              <div key={j} style={{ fontSize: 12, color: "#CBD5E1", padding: "3px 0 3px 12px", borderLeft: "2px solid #EF4444", marginBottom: 3 }}>{l}</div>
-                            ))}
-                          </div>
-                        </div>
-                        <div style={{ fontSize: 12, color: "#FFFFFF", background: p.takeawayColor, border: `1px solid ${p.takeawayColor}`, borderRadius: 4, padding: "8px 12px", fontWeight: 700 }}>
-                          👉 {p.takeaway}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Comparison table */}
-            <div style={{ marginBottom: 20 }}>
-              <h3 style={{ fontSize: 11, letterSpacing: 2, color: "#F8FAFC", textTransform: "uppercase", margin: "0 0 12px", paddingBottom: 8, borderBottom: "1px solid #334155" }}>
-                📊 Head-to-Head Comparison
-              </h3>
-              <div style={{ border: "1px solid #334155", borderRadius: 8, overflow: "hidden" }}>
-                <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr 1fr 1fr", padding: "10px 16px", background: "#1F2937", borderBottom: "1px solid #334155" }}>
-                  <div style={{ fontSize: 10, color: "#F8FAFC", textTransform: "uppercase", letterSpacing: 1 }}></div>
-                  {[["Workable", "#3B82F6"], ["Monaco", "#F59E0B"], ["Lightfield", "#10B981"]].map(([name, color]) => (
-                    <div key={name} style={{ fontSize: 11, fontWeight: 700, color }}>{name}</div>
-                  ))}
-                </div>
-                {crmPlatforms.comparison.map((row, i) => (
-                  <div key={i} style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr 1fr 1fr", padding: "10px 16px", borderBottom: i < crmPlatforms.comparison.length - 1 ? "1px solid #334155" : "none", background: i % 2 === 0 ? "#111827" : "#0F172A", gap: 8, alignItems: "start" }}>
-                    <div style={{ fontSize: 11, color: "#CBD5E1", textTransform: "uppercase", letterSpacing: 0.5 }}>{row.dimension}</div>
-                    <div style={{ fontSize: 11, color: "#93C5FD" }}>{row.workable}</div>
-                    <div style={{ fontSize: 11, color: "#FCD34D" }}>{row.monaco}</div>
-                    <div style={{ fontSize: 11, color: "#6EE7B7" }}>{row.lightfield}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Your Edge */}
-            <div style={{ marginBottom: 20 }}>
-              <h3 style={{ fontSize: 11, letterSpacing: 2, color: "#F8FAFC", textTransform: "uppercase", margin: "0 0 12px", paddingBottom: 8, borderBottom: "1px solid #334155" }}>
-                ⚡ Your Competitive Edge
-              </h3>
-              {crmPlatforms.edge.map((e, i) => (
-                <div key={i} style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: 14, marginBottom: 8, alignItems: "start" }}>
-                  <div style={{ width: 28, height: 28, borderRadius: "50%", background: "#7C3AED", border: "1px solid #7C3AED", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#FFFFFF", flexShrink: 0, fontWeight: 700 }}>{i + 1}</div>
-                  <div style={{ border: "1px solid #334155", borderRadius: 10, padding: "10px 14px", background: "#111827" }}>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: "#F8FAFC", marginBottom: 4 }}>{e.point}</div>
-                    <div style={{ fontSize: 11, color: "#CBD5E1", lineHeight: 1.6 }}>{e.detail}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Takeaway */}
-            <div style={{ padding: "14px 16px", border: "1px solid #7C3AED", borderRadius: 12, background: "#4C1D95", fontSize: 11, color: "#F5F3FF", lineHeight: 1.8, boxShadow: "none" }}>
-              <span style={{ color: "#FFFFFF", fontWeight: 800 }}>// STRATEGIC POSITIONING</span><br />
-              <span style={{ color: "#F5F3FF" }}>
-                Don't position as "AI recruiting tool" — position as{" "}
-                <span style={{ color: "#FFFFFF", fontWeight: 700 }}>AI Talent Intelligence Agent for high-value operators and investors</span>.
-                {" "}Workable is your infrastructure, not your competitor. Monaco is your closest rival — beat it with reasoning depth.
-                Lightfield proves the intelligence layer concept — apply it specifically to recruiting.
-              </span>
-            </div>
-          </div>
         ) : view === "matrix" ? (
-          <div style={{ color: "#F8FAFC" }}>
-            <p style={{ color: "#CBD5E1", fontSize: 12, marginBottom: 16, letterSpacing: 1 }}>
+          <div>
+            <p style={{ color: "#64748B", fontSize: 12, marginBottom: 16, letterSpacing: 1 }}>
               // PICK THE RIGHT TOOL FOR YOUR USE CASE
             </p>
-            <div style={{ border: "1px solid #334155", borderRadius: 12, overflow: "hidden", background: "#111827", boxShadow: "none" }}>
+            <div style={{ border: "1px solid #2D2D4E", borderRadius: 8, overflow: "hidden" }}>
               {decisionMatrix.map((row, i) => (
                 <div key={i} style={{
                   display: "grid",
                   gridTemplateColumns: "2fr 1.2fr 2fr",
                   padding: "12px 16px",
-                  borderBottom: i < decisionMatrix.length - 1 ? "1px solid #334155" : "none",
-                  background: i % 2 === 0 ? "#111827" : "#0F172A",
+                  borderBottom: i < decisionMatrix.length - 1 ? "1px solid #1E1E3A" : "none",
+                  background: i % 2 === 0 ? "#0F0F1A" : "#0A0A0F",
                   gap: 12,
                   alignItems: "start",
                 }}>
-                  <div style={{ fontSize: 12, color: "#E2E8F0" }}>{row.use}</div>
+                  <div style={{ fontSize: 12, color: "#94A3B8" }}>{row.use}</div>
                   <div style={{
                     fontSize: 12,
                     fontWeight: 700,
-                    color: "#F8FAFC",
-                    background: "#1F2937",
-                    border: "1px solid #475569",
+                    color: "#A78BFA",
+                    background: "#2D1B6933",
                     padding: "2px 8px",
                     borderRadius: 3,
                     textAlign: "center",
                     whiteSpace: "nowrap",
                   }}>{row.tool}</div>
-                  <div style={{ fontSize: 11, color: "#CBD5E1" }}>{row.why}</div>
+                  <div style={{ fontSize: 11, color: "#475569" }}>{row.why}</div>
                 </div>
               ))}
             </div>
@@ -856,29 +693,27 @@ export default function App() {
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 20 }}>
               <button onClick={() => setActiveCategory(null)} style={{
                 padding: "5px 12px",
-                borderRadius: 999,
+                borderRadius: 3,
                 border: "1px solid",
-                borderColor: !activeCategory ? "#7C3AED" : "#334155",
-                background: !activeCategory ? "#7C3AED" : "#1F2937",
-                color: "#F8FAFC",
+                borderColor: !activeCategory ? "#60A5FA" : "#2D2D4E",
+                background: !activeCategory ? "#1D4ED822" : "transparent",
+                color: !activeCategory ? "#60A5FA" : "#64748B",
                 cursor: "pointer",
                 fontSize: 11,
                 fontFamily: "inherit",
-                fontWeight: 700,
               }}>All</button>
               {categories.map(cat => (
                 <button key={cat} onClick={() => setActiveCategory(activeCategory === cat ? null : cat)} style={{
                   padding: "5px 12px",
-                  borderRadius: 999,
+                  borderRadius: 3,
                   border: "1px solid",
-                  borderColor: activeCategory === cat ? "#7C3AED" : "#334155",
-                  background: activeCategory === cat ? "#7C3AED" : "#1F2937",
-                  color: "#F8FAFC",
+                  borderColor: activeCategory === cat ? "#A78BFA" : "#2D2D4E",
+                  background: activeCategory === cat ? "#2D1B6922" : "transparent",
+                  color: activeCategory === cat ? "#A78BFA" : "#64748B",
                   cursor: "pointer",
                   fontSize: 11,
                   fontFamily: "inherit",
                   whiteSpace: "nowrap",
-                  fontWeight: 700,
                 }}>{cat}</button>
               ))}
             </div>
@@ -890,10 +725,10 @@ export default function App() {
                   fontSize: 13,
                   letterSpacing: 2,
                   textTransform: "uppercase",
-                  color: "#F8FAFC",
+                  color: "#475569",
                   margin: "0 0 12px",
                   paddingBottom: 8,
-                  borderBottom: "1px solid #334155",
+                  borderBottom: "1px solid #1E1E3A",
                 }}>
                   {category}
                 </h2>
@@ -906,14 +741,12 @@ export default function App() {
                         onClick={() => setExpandedTool(isExpanded ? null : key)}
                         style={{
                           border: "1px solid",
-                          borderColor: isExpanded ? tool.color : "#334155",
-                          borderRadius: 12,
+                          borderColor: isExpanded ? tool.color + "66" : "#2D2D4E",
+                          borderRadius: 6,
                           overflow: "hidden",
                           cursor: "pointer",
-                          transition: "border-color 0.2s, box-shadow 0.2s",
-                          background: isExpanded ? "#1F2937" : "#111827",
-                          color: "#F8FAFC",
-                          boxShadow: "none",
+                          transition: "border-color 0.2s",
+                          background: isExpanded ? tool.color + "08" : "#0F0F1A",
                         }}>
                         {/* Header row */}
                         <div style={{
@@ -930,26 +763,26 @@ export default function App() {
                               display: "inline-block",
                               flexShrink: 0,
                             }} />
-                            <span style={{ fontWeight: 700, fontSize: 14, color: "#F8FAFC" }}>{tool.name}</span>
+                            <span style={{ fontWeight: 700, fontSize: 14, color: "#F1F5F9" }}>{tool.name}</span>
                             <span style={{
                               fontSize: 10,
                               padding: "2px 6px",
                               borderRadius: 2,
-                              background: "#0F172A",
+                              background: tierColors[tool.tier] + "22",
                               color: tierColors[tool.tier],
-                              border: `1px solid ${tierColors[tool.tier]}`,
+                              border: `1px solid ${tierColors[tool.tier]}44`,
                             }}>{tool.tier}</span>
-                            <span style={{ fontSize: 11, color: "#CBD5E1" }}>{tool.tagline}</span>
+                            <span style={{ fontSize: 11, color: "#64748B" }}>{tool.tagline}</span>
                           </div>
                           <div style={{ display: "flex", gap: 16, alignItems: "center", flexShrink: 0 }}>
-                            <span style={{ fontSize: 11, color: "#E2E8F0" }}>{tool.pricing}</span>
-                            <span style={{ color: "#CBD5E1", fontSize: 12 }}>{isExpanded ? "▲" : "▼"}</span>
+                            <span style={{ fontSize: 11, color: "#475569" }}>{tool.pricing}</span>
+                            <span style={{ color: "#334155", fontSize: 12 }}>{isExpanded ? "▲" : "▼"}</span>
                           </div>
                         </div>
 
                         {/* Expanded content */}
                         {isExpanded && (
-                          <div style={{ padding: "0 16px 16px", borderTop: "1px solid #334155" }}>
+                          <div style={{ padding: "0 16px 16px", borderTop: "1px solid #1E1E3A" }}>
                             {/* Meta row */}
                             <div style={{
                               display: "grid",
@@ -964,26 +797,26 @@ export default function App() {
                                 ["Best For", tool.bestFor],
                               ].map(([label, value]) => (
                                 <div key={label} style={{
-                                  background: "#0F172A",
-                                  border: "1px solid #334155",
-                                  borderRadius: 8,
+                                  background: "#0A0A0F",
+                                  border: "1px solid #1E1E3A",
+                                  borderRadius: 4,
                                   padding: "8px 10px",
                                 }}>
-                                  <div style={{ fontSize: 10, color: "#CBD5E1", marginBottom: 3, textTransform: "uppercase", letterSpacing: 1 }}>{label}</div>
-                                  <div style={{ fontSize: 11, color: "#F8FAFC" }}>{value}</div>
+                                  <div style={{ fontSize: 10, color: "#475569", marginBottom: 3, textTransform: "uppercase", letterSpacing: 1 }}>{label}</div>
+                                  <div style={{ fontSize: 11, color: "#94A3B8" }}>{value}</div>
                                 </div>
                               ))}
                             </div>
 
                             {/* Strengths */}
                             <div style={{ marginBottom: 12 }}>
-                              <div style={{ fontSize: 10, color: "#F8FAFC", letterSpacing: 2, textTransform: "uppercase", marginBottom: 6, fontWeight: 700 }}>✓ Strengths</div>
+                              <div style={{ fontSize: 10, color: "#34D399", letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>✓ Strengths</div>
                               {tool.strengths.map((s, i) => (
                                 <div key={i} style={{
                                   fontSize: 12,
-                                  color: "#E2E8F0",
+                                  color: "#94A3B8",
                                   padding: "3px 0 3px 12px",
-                                  borderLeft: `2px solid ${tool.color}`,
+                                  borderLeft: `2px solid ${tool.color}44`,
                                   marginBottom: 3,
                                 }}>{s}</div>
                               ))}
@@ -991,13 +824,13 @@ export default function App() {
 
                             {/* Weaknesses */}
                             <div style={{ marginBottom: 12 }}>
-                              <div style={{ fontSize: 10, color: "#CBD5E1", letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>✗ Weaknesses</div>
+                              <div style={{ fontSize: 10, color: "#F87171", letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>✗ Weaknesses</div>
                               {tool.weaknesses.map((w, i) => (
                                 <div key={i} style={{
                                   fontSize: 12,
-                                  color: "#CBD5E1",
+                                  color: "#64748B",
                                   padding: "3px 0 3px 12px",
-                                  borderLeft: "2px solid #EF4444",
+                                  borderLeft: "2px solid #F8717144",
                                   marginBottom: 3,
                                 }}>{w}</div>
                               ))}
@@ -1010,9 +843,9 @@ export default function App() {
                                   fontSize: 10,
                                   padding: "3px 8px",
                                   borderRadius: 3,
-                                  background: "#1F2937",
-                                  color: "#F8FAFC",
-                                  border: `1px solid ${tool.color}`,
+                                  background: tool.color + "18",
+                                  color: tool.color,
+                                  border: `1px solid ${tool.color}33`,
                                 }}>{uc}</span>
                               ))}
                             </div>
@@ -1031,16 +864,15 @@ export default function App() {
         <div style={{
           marginTop: 32,
           padding: "16px",
-          border: "1px solid #334155",
-          borderRadius: 12,
-          background: "#111827",
+          border: "1px solid #2D1B69",
+          borderRadius: 6,
+          background: "#0F0B1F",
           fontSize: 11,
-          color: "#E2E8F0",
+          color: "#475569",
           lineHeight: 1.8,
-          boxShadow: "none",
         }}>
-          <span style={{ color: "#F8FAFC", fontWeight: 800 }}>// STACK RECOMMENDATION FOR DEEP INTERNET COVERAGE</span><br />
-          <span style={{ color: "#E2E8F0" }}>
+          <span style={{ color: "#7C3AED" }}>// STACK RECOMMENDATION FOR DEEP INTERNET COVERAGE</span><br />
+          <span style={{ color: "#94A3B8" }}>
             Layer 1 (Discovery): Exa (semantic) + Serper (fresh Google) + Brave (independent index) + Google Dorks (exposed/hidden data)<br />
             Layer 2 (Extraction): Firecrawl (managed LLM-ready) | Playwright+Crawlee (anti-bot, custom) | Crawl4AI (self-hosted)<br />
             Layer 3 (Entity Graph): SpiderFoot / Maltego for connection mapping across discovered entities<br />
