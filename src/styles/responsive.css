@@ -59,6 +59,86 @@
   gap: 20px;
 }
 
+/* ── Filter bar ── */
+.filter-scroll-wrap { position: relative; }
+.filter-scroll-bar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 2px;
+}
+.filter-scroll-bar::-webkit-scrollbar { display: none; }
+.filter-scroll-fade {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 56px;
+  background: linear-gradient(to right, transparent, #ffffff);
+  pointer-events: none;
+}
+.filter-pill {
+  padding: 8px 18px;
+  border-radius: var(--radius-btn);
+  border: 1.5px solid #E5E7EB;
+  background: transparent;
+  color: #6B7280;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.filter-pill:hover { border-color: #D1D5DB; color: #374151; }
+.filter-pill--active {
+  border-color: transparent;
+  background: var(--gradient);
+  color: #ffffff;
+}
+
+/* ── View toggle ── */
+.view-toggle {
+  display: flex;
+  border: 1.5px solid #E5E7EB;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.view-toggle-btn {
+  padding: 7px 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9CA3AF;
+  display: flex;
+  align-items: center;
+  transition: background 0.15s, color 0.15s;
+}
+.view-toggle-btn + .view-toggle-btn { border-left: 1.5px solid #E5E7EB; }
+.view-toggle-btn.active { background: #F3F4F6; color: #0B0B0F; }
+
+/* ── Show-more button ── */
+.show-more-btn {
+  padding: 9px 22px;
+  border-radius: var(--radius-btn);
+  border: 1.5px solid #E5E7EB;
+  background: #ffffff;
+  color: #6B7280;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.show-more-btn:hover {
+  border-color: #722da5;
+  color: #722da5;
+  background: rgba(114, 45, 165, 0.04);
+}
+
+/* ── List view ── */
+.tool-list { display: flex; flex-direction: column; gap: 8px; }
+
 /* ── Stack section ── */
 .stack-section { background: #ffffff; padding: var(--section-pad) 40px; }
 .stack-inner   { max-width: var(--max-w); margin: 0 auto; }
